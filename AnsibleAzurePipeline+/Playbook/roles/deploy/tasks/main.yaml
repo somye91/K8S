@@ -5,4 +5,3 @@
     remote_src: no
     owner: somye
     group: somye
-  with_items: "{{ files_to_copy.stdout_lines }}"
