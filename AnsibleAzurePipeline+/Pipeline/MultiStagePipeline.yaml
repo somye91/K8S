@@ -1,0 +1,42 @@
+trigger:
+  branches:
+    exclude:
+    - '*'
+
+pool:
+  name: 'MyPool'
+  vmImage: 'ubuntu-latest'
+
+stages:
+
+- stage: Build
+  jobs:
+  - job: Build
+    displayName: 'Create a release'
+    steps:
+
+    - task: CopyFiles@2
+      inputs:
+        targetFolder: '$(Build.ArtifactStagingDirectory)'
+        Contents: |
+          **/*
+          !.git/**/*
+        OverWrite: true  
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'deployDockerImage'
+        displayName: 'Publish artifact deployDockerImage'
+
+
+- stage: Dev
+  displayName: 'Release to DEV'
+  jobs:
+  - template: deploy-to-env-dockerimg.yml
+    parameters:
+      keyvaulttouse: 'KVD'
+      targetHost: 'DEV'
+ 
+
+    
