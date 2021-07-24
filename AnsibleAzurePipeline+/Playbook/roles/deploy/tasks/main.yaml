@@ -5,3 +5,8 @@
     remote_src: no
     owner: somye
     group: somye
+
+- name: Deploy docker image and rollout on kubernetes
+  shell: |
+    docker build -t sampleapp:latest /Users/somye/Library/Preferences/PyCharmCE2019.1/scratches
+    kubectl rollout restart deployment/hello-python 
