@@ -1,0 +1,8 @@
+- name: Push the file on the Target node
+  copy:
+    src: "{{ Intermidiatory_Files }}/{{ item }}"
+    dest: "/Users/somye/Library/Preferences/PyCharmCE2019.1/scratches"
+    remote_src: no
+    owner: somye
+    group: somye
+  with_items: "{{ files_to_copy.stdout_lines }}"
