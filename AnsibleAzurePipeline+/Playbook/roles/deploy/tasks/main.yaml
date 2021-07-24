@@ -1,6 +1,6 @@
 - name: Push the file on the Target node
   copy:
-    src: "{{ Intermidiatory_Files }}/{{ item }}"
+    src: "{{ Intermidiatory_Files }}/deployDockerImage/K8S/Docker/scratch.py"
     dest: "/Users/somye/Library/Preferences/PyCharmCE2019.1/scratches"
     remote_src: no
     owner: somye
