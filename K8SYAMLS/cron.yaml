@@ -1,0 +1,27 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: checkmicroservice
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - args:
+            - /bin/sh
+            - -ec
+            - 'if [ $(curl --write-out %{http_code} --silent --output /dev/null  http://hello-python-service:5000) == 500 ]; then echo  "500 $(date)" >>/tmp/logs/applogs.log;fi;'
+            image: nightfury1204/alpine-curl
+            name: hello
+            volumeMounts:
+            - mountPath: /tmp/logs
+              name: data-volume
+          restartPolicy: OnFailure
+
+          volumes:
+          - name: data-volume
+            hostPath: 
+              path: /Users/somye/Library/Preferences/PyCharmCE2019.1/scratches/logs
+              type: Directory
