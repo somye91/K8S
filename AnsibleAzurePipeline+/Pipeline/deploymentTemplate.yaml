@@ -26,7 +26,7 @@ jobs:
               rootDirectory: '$(Agent.BuildDirectory)/deployDockerImage'
               targetFiles: |
                 **/*.cfg
-                **/*.yml
+                **/*.yaml
                 **/*.ini
               encoding: 'auto'
               writeBOM: true
@@ -56,8 +56,8 @@ jobs:
           - task: Ansible@0
             inputs:
               ansibleInterface: 'agentMachine'
-              playbookPathOnAgentMachine: '$(Agent.BuildDirectory)/deployDockerImage/playbook/site.yml'
+              playbookPathOnAgentMachine: '$(Agent.BuildDirectory)/deployDockerImage/playbook/site.yaml'
               inventoriesAgentMachine: 'file'
-              inventoryFileOnAgentMachine: '$(Agent.BuildDirectory)/deployDockerImage/playbook/inventories/hosts.yml'
+              inventoryFileOnAgentMachine: '$(Agent.BuildDirectory)/deployDockerImage/playbook/inventories/hosts.yaml'
               args: '-e "targetHost=${{ parameters.targetHost }}" ' 
               failOnStdErr: false
