@@ -12,7 +12,7 @@ Navigate to the directory where your Dockerfile, requirements.txt and scratch.py
 Step 3:
 Create kubernetes objects using the K8S yaml fies
 > kubectl apply -f deployment.yaml
-This will create the micro-service from the sampleapp docker image that we created in Step2
+This will create the micro-service from the sampleapp docker image that we created in Step2. 4 replicas would  always be created and maintained by kubernetes. 
 
 > kubectl create -f service.yaml
 This will create a service that ties with the micro-service that we just created. Other kubernetes pods can access our micro-service using this service we just created hello-python-service:5000
