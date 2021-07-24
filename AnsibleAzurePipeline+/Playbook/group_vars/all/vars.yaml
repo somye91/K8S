@@ -1,1 +1,1 @@
-Intermidiatory_Files : #{deployDockerImage}#/
+Intermidiatory_Files : #{Build.ArtifactStagingDirectory}#/
