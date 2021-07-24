@@ -1,0 +1,63 @@
+parameters:
+
+- name: keyvaulttouse 
+  type: string
+
+- name: targetHost
+  type: string
+
+
+jobs:
+  - deployment: 
+    timeoutInMinutes: 180
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureKeyVault@1
+            inputs:
+              azureSubscription: 'MyAzureSubsription'
+              KeyVaultName: '${{ parameters.keyvaulttouse }}'
+              RunAsPreJob: true
+
+          - task: replacetokens@3
+            inputs:
+              #rootDirectory: '$(Build.ArtifactStagingDirectory)/crontab'
+              rootDirectory: '$(Agent.BuildDirectory)/deployDockerImage'
+              targetFiles: |
+                **/*.cfg
+                **/*.yml
+                **/*.ini
+              encoding: 'auto'
+              writeBOM: true
+              actionOnMissing: 'warn'
+              keepToken: false
+              tokenPrefix: '#{'
+              tokenSuffix: '}#'
+              useLegacyPattern: false
+              enableTelemetry: true
+              timeoutInMinutes: 10
+          
+          
+          - task: CmdLine@2
+            inputs:
+              script: |
+                mkdir -p $(System.DefaultWorkingDirectory)/.ssh
+                chmod 700 $(System.DefaultWorkingDirectory)/.ssh
+                echo $(DevPK) | base64 -d  > $(System.DefaultWorkingDirectory)/.ssh/myPK
+
+                chmod 600 $(System.DefaultWorkingDirectory)/.ssh/*myPK*
+
+          - task: PrepareAnsibleRuntime@0
+            displayName: 'Prepare Ansible Runtime'
+            inputs:
+              ansibleConfigFilePath: '$(Agent.BuildDirectory)/deployDockerImage/playbook/ansible.cfg'                                     
+
+          - task: Ansible@0
+            inputs:
+              ansibleInterface: 'agentMachine'
+              playbookPathOnAgentMachine: '$(Agent.BuildDirectory)/deployDockerImage/playbook/site.yml'
+              inventoriesAgentMachine: 'file'
+              inventoryFileOnAgentMachine: '$(Agent.BuildDirectory)/deployDockerImage/playbook/inventories/hosts.yml'
+              args: '-e "targetHost=${{ parameters.targetHost }}" ' 
+              failOnStdErr: false
