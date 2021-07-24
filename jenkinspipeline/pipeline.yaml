@@ -6,7 +6,7 @@ pipeline {
             steps {
                 
                 sh '''
-                    cp /my/dir/scratch_v1.py /Users/somye/Library/Preferences/PyCharmCE2019.1/scratches/scratch.py
+                    cp /my/dir/scratch.py /Users/somye/Library/Preferences/PyCharmCE2019.1/scratches/scratch.py
                     docker build -t sampleapp:latest /Users/somye/Library/Preferences/PyCharmCE2019.1/scratches
                     kubectl rollout restart deployment/hello-python 
                 '''
