@@ -14,12 +14,12 @@ Create kubernetes objects using the K8S yaml fies
 > kubectl apply -f deployment.yaml
 This will create the micro-service from the sampleapp docker image that we created in Step2. 4 replicas would  always be created and maintained by kubernetes. 
 
-> kubectl create -f service.yaml
+> kubectl apply -f service.yaml
 This will create a service that ties with the micro-service that we just created. Other kubernetes pods can access our micro-service using this service we just created hello-python-service:5000
 
 Step 4:
 Create the cronjob in kubernetes that writes the HTTP status returned by the micro-service o a log file
->kubectl create -f cron.yaml
+>kubectl apply -f cron.yaml
 This will create a cronjob in kubernetes using a lightweight alpine image and is scheduled to run evey 2 mins. It checks the HTTP response of the micro-service from Step2 and logs http500 to a log file which is mounted to the actual host using volumes
 
 If you are using minikube, then you have to do an extra step before Step 4
