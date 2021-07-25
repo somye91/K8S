@@ -41,7 +41,7 @@ It would be an interesting set up since the distroless image from Google does no
 
 <H3>Improving the design to generate an alert based on error ratio per minute </h3>
 <p>
- The application itself should log the following metrics
+ The microservice itself should log the following metrics
 <ul>
   <li>HTTP response of every api call</li>
   <li>Duration of every api call</li>
