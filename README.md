@@ -44,8 +44,9 @@ It would be an interesting set up since the distroless image from Google does no
  The microservice itself should log the following metrics
 <ul>
   <li>The number of HTTP requests that result in 2XX or 5XX responses</li>
-  <li>Latency of HTTP 2XX responses </li>
- The problem with this is that monitoring traffic is drectly proportional to the user traffic. We woud like to create an independent monitoring system that does not rely on actual user traffic.
-And open source monitoring tools such as Prometheus can also be deployed within the same kubernetes cluster that can monitor the microservice(s) and represent the various KPIs graphically. There are a bunch of aggregations ready to be used within Prometheus that could trigger an alert based on error ratio per time, or latency per time etc.  
+  <li>Latency of HTTP 2XX responses </li> 
 </ul>
+ The problem with this is that monitoring traffic is drectly proportional to the user traffic. We woud like to create an independent monitoring system that does not rely on actual user traffic.
+And open source monitoring tools such as Prometheus can also be deployed within the same kubernetes cluster that can monitor the microservice(s) and represent the various KPIs graphically. There are a bunch of aggregations ready to be used within Prometheus that could trigger an alert based on error ratio per time, or latency per time etc. 
+
 </p>
