@@ -43,8 +43,8 @@ It would be an interesting set up since the distroless image from Google does no
 <p>
  The microservice itself should log the following metrics
 <ul>
-  <li>HTTP response of every api call</li>
-  <li>Duration of every api call</li>
+  <li>The number of HTTP requests that result in 2XX or 5XX responses</li>
+  <li>Latency of HTTP 2XX responses </li>
   
 </ul>
 </p>
