@@ -37,3 +37,13 @@ I could even use the same python distroless container to create the service cont
 It would be an interesting set up since the distroless image from Google does not even have a shell to begin with. A really really small attack surface
 
 </p>
+
+<H3>Improving the design to generate an alert based on error ratio per minute </h3>
+<p>
+ The application itself should log the following metrics
+<ul>
+  <li>HTTP response of every api call</li>
+  <li>Duration of every api call</li>
+  
+</ul>
+</p>
