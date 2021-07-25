@@ -3,7 +3,9 @@
 This is built and tested with minikube
 
 Step 1:
+<p>
 `minikube start`
+</p>
 
 Step 2: 
 Navigate to the directory where your Dockerfile, requirements.txt and scratch.py is. And build the docker image sampleapp
