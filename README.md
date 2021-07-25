@@ -28,11 +28,12 @@ If you are using minikube, then you have to do an extra step before Step 4
 
 
 <H3>How to reduce the attack surface of the docker images even more </h3>
-Using distroless images would be the way to go
+Using distroless images would be the way to go.
 Since i used python, i could make use of Google's distroless images around Python3
 Reference: https://github.com/GoogleContainerTools/distroless/tree/main/examples/python3
 <p>This image is bare minimal, we could package our app to this image which would result in an even lesser attack surface
 
 I could even use the same python distroless container to create the service container that checks the health of the micro-service. Then i do no need to use the curl command anymore and everything could be done in python.
-It would be an interesting set up since the distroless image from Google do not even have a shell to begin with. A really really low attack surface
+It would be an interesting set up since the distroless image from Google does not even have a shell to begin with. A really really small attack surface
+
 </p>
