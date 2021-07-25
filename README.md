@@ -27,4 +27,5 @@ If you are using minikube, then you have to do an extra step before Step 4
 
 
 
+<H1>How to reduce the attack surface of the docker images even more </h1>
 
